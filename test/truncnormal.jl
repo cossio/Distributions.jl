@@ -37,4 +37,7 @@ end
         @test abs(median(X)) < 0.01
         @test abs(var(X) - var(trunc)) < 0.01
     end
+    # https://github.com/JuliaStats/Distributions.jl/issues/624
+    @test rand(truncated(Normal(+Inf, 1), 0, 1)) ≈ 1
+    @test rand(truncated(Normal(-Inf, 1), 0, 1)) ≈ 0
 end
